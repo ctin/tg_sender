@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "tg_sender"
+version = "3.0.3"
+description = "sender for telegram"
+authors = ["ctin"]
+
+[tool.poetry.dependencies]
+python = "3.13.1"
+pytest = "*"
+aiogram = "*"
+TgCrypto = "*"
+aiosignal = "*"
+storage = "*"
+aioschedule = "*"
+pytest-cov = "*"
+pytest-asyncio = "*"
+pytest-mock = "*"
+coverage = "*"
+protobuf = "*"
+pillow = "*"
+babel = "*"
+betterproto = { version = "*", extras = ["compiler"] }
+logger = { git = "git@github.com:fun-limited/logger.git", branch = "master" }
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(thread)d : %(asctime)s:%(msecs)03d : %(levelname)s : %(message)s"
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+my-project = "my_project.my_project:run"

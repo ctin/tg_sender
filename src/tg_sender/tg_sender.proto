@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package tg_sender_api;
+
+message MessageOptions {
+    string parse_mode = 1;
+    bool enable_web_page_preview = 3;
+    int64 reply_to = 4;
+}
+
+message MessageDetails {
+    bool in_process = 1;
+    bool sent = 2;
+    int64 message_id = 3;
+}
+
+message SendText {
+    string text = 1;
+}
+
+message SendPhoto {
+    string caption = 1;
+    string path = 2;
+}
+
+message SendPhotos {
+    string caption = 1;
+    repeated string paths = 2;
+}
+
+message SendFile {
+    string caption = 1;
+    string path = 2;
+}
+
+message Forward {
+    string from_channel = 1;
+    int64 message_id = 2;
+}
+
+message Pin {
+    int64 message_id = 1;
+    bool enable_notification = 2;
+}
+
+message Unpin {
+    int64 message_id = 1;
+}
+
+message TaskDetails {
+    bool in_process = 1;
+    bool sent = 2;
+    int64 result = 3;
+}
+
+message Delete {
+    int64 message_id = 1;
+}
+
+message Button {
+    string text = 1;
+    string callback_data = 2;
+}
+
+message SendMarkup {
+    string text = 1;
+    repeated Button buttons = 2;
+}
+
+message Task {
+    MessageOptions options = 1;
+    TaskDetails details = 2; // will be filled by lib, do not touch that
+    string channel = 3;
+    int64 thread_id = 4;
+    int64 custom_int_field = 5;
+    string custom_string_field = 6;
+    oneof task {
+        SendText send_text = 7;
+        SendPhoto send_photo = 8;
+        SendPhotos send_photos = 9;
+        SendFile send_file = 10;
+        Forward forward = 11;
+        Pin pin = 12;
+        Unpin unpin = 13;
+        Delete delete = 14;
+        SendMarkup send_markup = 15; // New task type for sending markup
+    }
+}
